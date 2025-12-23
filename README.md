@@ -1,4 +1,4 @@
-# ELEC3 Final Project - Web Applications Suite
+# ELEC3 Final Project
 
 A collection of four responsive web applications built with vanilla HTML, CSS, and JavaScript. This suite includes a calculator, stopwatch, Waifu.pics API integration, and weather API integration.
 
