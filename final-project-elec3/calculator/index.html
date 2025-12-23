@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-card">
+            <div class="calculator-header">
+                <h1 class="title">Calculator</h1>
+                <p class="subtitle">Advanced Expression Engine</p>
+            </div>
+
+            <div class="display-section">
+                <div class="history" id="history">0</div>
+                <input id="display" type="text" class="display-input" placeholder="0" readonly>
+            </div>
+
+            <div class="keyboard-grid" role="group" aria-label="Calculator buttons">
+                <button data-key="clear" class="btn btn-clear" title="Clear (Esc)">AC</button>
+                <button data-key="delete" class="btn btn-delete" title="Delete (Backspace)">⌫</button>
+                <button data-key="/" class="btn btn-operator" title="Divide">/</button>
+                <button data-key="*" class="btn btn-operator" title="Multiply">×</button>
+
+                <button data-key="7" class="btn">7</button>
+                <button data-key="8" class="btn">8</button>
+                <button data-key="9" class="btn">9</button>
+                <button data-key="-" class="btn btn-operator" title="Subtract">−</button>
+
+                <button data-key="4" class="btn">4</button>
+                <button data-key="5" class="btn">5</button>
+                <button data-key="6" class="btn">6</button>
+                <button data-key="+" class="btn btn-operator" title="Add">+</button>
+
+                <button data-key="1" class="btn">1</button>
+                <button data-key="2" class="btn">2</button>
+                <button data-key="3" class="btn">3</button>
+                <button data-key="." class="btn btn-decimal">.</button>
+
+                <button data-key="0" class="btn btn-zero">0</button>
+                <button data-key="equals" class="btn btn-equals" title="Calculate (Enter)">=</button>
+            </div>
+
+            <div class="info-bar">
+                <small>Tip: Use keyboard shortcuts or mouse to calculate</small>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

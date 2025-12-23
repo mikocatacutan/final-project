@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Waifu Pics Explorer</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="app-shell">
+		<header class="top-bar">
+			<div>
+				<h1>Waifu Pics Explorer</h1>
+				<p class="tagline">Browse waifu.pics images (SFW/NSFW toggle)</p>
+			</div>
+			<div class="actions">
+				<label class="toggle">
+					<input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+					<span class="track"><span class="thumb"></span></span>
+					<span class="toggle-label">Dark</span>
+				</label>
+			</div>
+		</header>
+
+		<main>
+			<section class="panel controls">
+				<div class="control-row">
+					<label for="categorySearch">Search</label>
+					<input id="categorySearch" type="text" placeholder="Filter categories..." autocomplete="off">
+				</div>
+				<div class="control-row">
+					<label for="categorySelect">Category</label>
+					<select id="categorySelect"></select>
+				</div>
+				<div class="control-row">
+					<label class="checkbox">
+						<input type="checkbox" id="nsfwToggle">
+						<span>Allow NSFW endpoints</span>
+					</label>
+					<p class="hint">SFW only by default. Enable NSFW to see adult endpoints.</p>
+				</div>
+				<div class="buttons">
+					<button id="fetchBtn">Fetch Image</button>
+					<button id="favoriteBtn" class="ghost">Save to Favorites</button>
+				</div>
+				<p id="status" role="status" aria-live="polite" class="status"></p>
+			</section>
+
+			<section class="panel viewer">
+				<div class="image-frame">
+					<div id="loader" class="loader" aria-hidden="true"></div>
+					<img id="preview" alt="Waifu" />
+				</div>
+				<div class="viewer-actions">
+					<button id="openBtn" class="ghost">Open in New Tab</button>
+					<button id="copyBtn" class="ghost">Copy Image URL</button>
+				</div>
+				<p id="source" class="muted"></p>
+			</section>
+
+			<section class="panel favorites">
+				<div class="section-header">
+					<h2>Favorites</h2>
+					<button id="clearFavorites" class="ghost small">Clear</button>
+				</div>
+				<div id="favoritesGrid" class="favorites-grid" aria-live="polite"></div>
+			</section>
+		</main>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

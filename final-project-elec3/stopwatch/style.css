@@ -1,0 +1,388 @@
+/* ============================================
+   Unified Modern UI Theme - Indigo & Pink
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --surface-bg: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --accent: #ec4899;
+    --accent-light: #f472b6;
+    --success: #10b981;
+    --danger: #ef4444;
+    --border-radius: 12px;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #0a0e27 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Animated background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ============================================
+   STOPWATCH SPECIFIC
+   ============================================ */
+
+.stopwatch-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.stopwatch-card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, #1a2f4b 100%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    box-shadow: 
+        0 0 60px rgba(99, 102, 241, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stopwatch-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.stopwatch-header .title {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.stopwatch-header .subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Timer Display */
+.timer-display {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--border-radius);
+    padding: 24px 16px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.5), transparent);
+    pointer-events: none;
+}
+
+.pulse.active {
+    animation: pulse-expand 1.5s ease-out infinite;
+}
+
+@keyframes pulse-expand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.time-segments {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.time-segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.time-value {
+    font-size: 44px;
+    font-weight: 700;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: var(--primary-light);
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.time-label {
+    font-size: 9px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.separator {
+    font-size: 32px;
+    color: var(--primary-light);
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.6;
+    animation: separator-pulse 2s ease-in-out infinite;
+}
+
+@keyframes separator-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+}
+
+/* Controls Section */
+.controls-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    padding: 16px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--surface-bg) 0%, rgba(51, 65, 85, 0.8) 100%);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+    z-index: 0;
+}
+
+.btn-label {
+    position: relative;
+    z-index: 1;
+}
+
+.control-btn:hover::before {
+    left: 100%;
+}
+
+.control-btn:hover:not(:disabled) {
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+}
+
+.control-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+}
+
+.btn-start.active {
+    background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+    border-color: var(--danger);
+    color: white;
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+}
+
+.btn-start.active:hover {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.6);
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(99, 102, 241, 0.1) 100%);
+    border-color: rgba(99, 102, 241, 0.5);
+    color: var(--primary-light);
+}
+
+.btn-reset:hover:not(:disabled) {
+    border-color: rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-reset:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Keyboard Hints */
+.keyboard-hints {
+    text-align: center;
+    padding: 12px;
+    background: rgba(99, 102, 241, 0.05);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+}
+
+.keyboard-hints small {
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.3px;
+}
+
+kbd {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Monaco', monospace;
+    font-size: 10px;
+    margin: 0 2px;
+    display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .stopwatch-card {
+        padding: 20px;
+    }
+
+    .stopwatch-header .title {
+        font-size: 24px;
+    }
+
+    .time-value {
+        font-size: 36px;
+    }
+
+    .time-label {
+        font-size: 8px;
+    }
+
+    .separator {
+        font-size: 26px;
+    }
+
+    .controls-section {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .control-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .keyboard-hints small {
+        font-size: 10px;
+    }
+}
+
+/* Focus styles for accessibility */
+.control-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary-color: #6366f1;
+        --bg-color: #f8fafc;
+        --card-bg: #f1f5f9;
+        --surface-bg: #e2e8f0;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--bg-color) 0%, #f0f4f8 100%);
+    }
+
+    .stopwatch-card {
+        box-shadow: 
+            0 0 30px rgba(99, 102, 241, 0.1),
+            inset 0 1px 0 rgba(0, 0, 0, 0.05);
+    }
+}

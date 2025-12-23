@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stopwatch-container">
+        <div class="stopwatch-card">
+            <div class="stopwatch-header">
+                <h1 class="title">Stopwatch</h1>
+                <p class="subtitle">Professional Timing</p>
+            </div>
+
+            <div class="timer-display">
+                <div class="time-segments">
+                    <div class="time-segment">
+                        <span class="time-value" id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="time-segment">
+                        <span class="time-value" id="minutes">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="time-segment">
+                        <span class="time-value" id="seconds">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="time-segment">
+                        <span class="time-value" id="milliseconds">00</span>
+                        <span class="time-label">Centisecs</span>
+                    </div>
+                </div>
+                <div class="pulse" id="pulse"></div>
+            </div>
+
+            <div class="controls-section">
+                <button class="control-btn btn-start" data-action="toggle" title="Start/Stop (Space)">
+                    <span class="btn-label" id="startStopText">Start</span>
+                </button>
+                <button class="control-btn btn-reset" data-action="reset" title="Reset (R)">
+                    <span class="btn-label">Reset</span>
+                </button>
+            </div>
+
+            <div class="keyboard-hints">
+                <small>
+                    <kbd>Space</kbd> to start/stop · <kbd>R</kbd> to reset
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
